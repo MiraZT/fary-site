@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <Image
-        className="relative z-[-1]"
+        className="relative z-[-1] object-center object-cover"
         src="/background.jpg"
         alt="FarySD logo"
         fill
@@ -37,26 +37,28 @@ export default function Home() {
           priority
         />
         <div
-          className="px-4 py-2 rounded-lg"
+          className="max-w-[450px] px-4 py-2 rounded-lg text-center"
           style={{
             backgroundColor: "rgba(255 255 250 / 0.10)",
             color: "#fffcfb",
             fontWeight: 200,
           }}
         >
-          <span>Мир алых грёз, белых надежд и ярких мечт</span>
+          <span className="inline-flex flex-nowrap">Мир алых грёз,</span>{" "}
+          <span className="inline-flex flex-nowrap">белых надежд</span>{" "}
+          <span className="inline-flex flex-nowrap">и ярких мечт</span>
         </div>
       </main>
 
       <footer
-        className="row-start-3 flex gap-3 flex-wrap items-center justify-center"
+        className="row-start-3 flex gap-3 flex-wrap items-center justify-center text-center"
         style={{
           fontWeight: 500,
         }}
       >
         {links.map(({ name, href }, index) => (
           <a
-            className="opacity-40 hover:opacity-100 p-4"
+            className="opacity-40 hover:opacity-100 p-2 sm:p-4"
             href={href}
             key={index}
             target="_blank"
