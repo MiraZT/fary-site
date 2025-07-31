@@ -21,8 +21,8 @@ model User {
   minecraftNickname String? @map("minecraft_nickname")
   // roles             String[]
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
 
   @@map("users")
 }
@@ -37,8 +37,8 @@ model Post {
   user   User   @relation(fields: [userId], references: [id])
   userId String @map("user_id")
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
 
   @@map("posts")
 }
