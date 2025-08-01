@@ -5,6 +5,7 @@ import {
   // Body,
   // Patch,
   Param,
+  Query,
   // Delete,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
@@ -22,7 +23,17 @@ export class PostsController {
   // }
 
   @Get()
-  async findAll(): Promise<PostModel[]> {
+  async findAll(@Query('slug') slug?: string): Promise<PostModel[]> {
+    if (slug) {
+      return this.postsService.findAll({
+        where: {
+          slug: {
+            equals: slug,
+          },
+        },
+      });
+    }
+
     return this.postsService.findAll({});
   }
 
