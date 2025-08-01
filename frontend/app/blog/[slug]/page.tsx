@@ -1,7 +1,5 @@
 "use client";
 
-import { Post as PostType } from "@/types";
-import Link from "next/link";
 import { use } from "react";
 import { getPostBySlug } from "../_api/get-posts";
 
