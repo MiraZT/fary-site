@@ -20,7 +20,21 @@ export class PostsService {
     orderBy?: Prisma.PostOrderByWithRelationInput;
   }): Promise<Post[]> {
     const { skip, take, cursor, where, orderBy } = params;
-    return this.prisma.post.findMany({ skip, take, cursor, where, orderBy });
+    return this.prisma.post.findMany({
+      skip,
+      take,
+      cursor,
+      where,
+      orderBy,
+      include: {
+        author: {
+          select: {
+            jobName: true,
+            username: true,
+          },
+        },
+      },
+    });
   }
 
   async findOne(
@@ -28,6 +42,14 @@ export class PostsService {
   ): Promise<Post | null> {
     return this.prisma.post.findUnique({
       where: postWhereUniqueInput,
+      include: {
+        author: {
+          select: {
+            jobName: true,
+            username: true,
+          },
+        },
+      },
     });
   }
 
