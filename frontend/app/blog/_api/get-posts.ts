@@ -14,7 +14,7 @@ export async function getPosts(): Promise<Post[]> {
   return posts;
 }
 
-export async function getPost(id: string): Promise<Post> {
+export async function getPost(id: string): Promise<Post | null> {
   const data = await fetch(`${api}/posts/${id}`, {
     cache: "force-cache",
     next: {
@@ -26,14 +26,14 @@ export async function getPost(id: string): Promise<Post> {
   return post;
 }
 
-export async function getPostBySlug(slug: string): Promise<Post> {
+export async function getPostBySlug(slug: string): Promise<Post | null> {
   const data = await fetch(`${api}/posts/?slug=${slug}`, {
     cache: "force-cache",
     next: {
       revalidate: 21_600, // 6 hours, maybe
     },
   });
-  const post = await data.json();
+  const posts = await data.json();
 
-  return post;
+  return posts ? posts[0] : null;
 }

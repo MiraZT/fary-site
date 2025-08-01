@@ -13,6 +13,8 @@ export default function PostPage({
   const { slug } = use(params);
   const data = use(getPostBySlug(slug));
 
+  if (!data) return null;
+
   return (
     <main className="mx-auto my-0 max-w-4xl gap-2 flex flex-col justify-center items-center text-center p-4 m-1 mb-16 rounded-xl bg-[var(--background-card)] ring-1 ring-[var(--foreground)]">
       <h1 className="text-lg font-semibold text-[var(--foreground)]">
