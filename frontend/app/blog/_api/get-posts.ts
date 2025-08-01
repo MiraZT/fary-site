@@ -21,7 +21,19 @@ export async function getPost(id: string): Promise<Post> {
       revalidate: 21_600, // 6 hours, maybe
     },
   });
-  const posts = await data.json();
+  const post = await data.json();
 
-  return posts;
+  return post;
+}
+
+export async function getPostBySlug(slug: string): Promise<Post> {
+  const data = await fetch(`${api}/posts/?slug=${slug}`, {
+    cache: "force-cache",
+    next: {
+      revalidate: 21_600, // 6 hours, maybe
+    },
+  });
+  const post = await data.json();
+
+  return post;
 }
