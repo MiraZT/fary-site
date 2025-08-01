@@ -10,15 +10,20 @@ generator client {
 }
 
 datasource db {
-  // временно, потом будет postgresql
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id                String  @id @default(uuid())
-  posts             Post[]
-  minecraftNickname String? @map("minecraft_nickname")
+  id       String @id @default(uuid())
+  username String @unique
+
+  name              String?
+  jobName           String? @map("job_name")
+  minecraftNickname String? @map("minecraft_nickname") @unique
+
+  posts Post[]
+
   // roles             String[]
 
   createdAt DateTime  @default(now()) @map("created_at")
@@ -29,13 +34,15 @@ model User {
 
 model Post {
   id String @id @default(uuid())
+  // my-first-post-6ee484e5 :: "6ee484e5" - first 8 letters from uuid
+  slug String @unique
 
   title       String
   description String?
   content     String
 
-  user   User   @relation(fields: [userId], references: [id])
-  userId String @map("user_id")
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String @map("author_id")
 
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt @map("updated_at")
