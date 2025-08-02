@@ -23,7 +23,11 @@ export class PostsController {
   // }
 
   @Get()
-  async findAll(@Query('slug') slug?: string): Promise<PostModel[]> {
+  async findAll(
+    @Query('slug') slug?: string,
+    @Query('count') count: string = '10',
+    @Query('skip') skip: string = '0',
+  ): Promise<PostModel[]> {
     if (slug) {
       return this.postsService.findAll({
         where: {
@@ -34,7 +38,13 @@ export class PostsController {
       });
     }
 
-    return this.postsService.findAll({});
+    return this.postsService.findAll({
+      skip: Number(skip),
+      take: Number(count),
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
   }
 
   @Get(':id')
