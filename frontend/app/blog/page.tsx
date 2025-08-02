@@ -1,18 +1,34 @@
+import type { Metadata } from "next";
 import type { Post as PostType } from "@/types";
 
 import Link from "next/link";
+
 import { getPosts } from "./_api/get-posts";
 
-export default async function BlogPage() {
-  const posts = await getPosts();
+export const metadata: Metadata = {
+  title: "Блог проекта",
+};
 
-  return (
-    <main className="mx-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-      {posts.map((post) => (
-        <Post key={post.id} data={post} />
-      ))}
-    </main>
-  );
+export default async function BlogPage() {
+  try {
+    const posts = await getPosts();
+
+    return (
+      <main className="mx-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {posts.map((post) => (
+          <Post key={post.id} data={post} />
+        ))}
+      </main>
+    );
+  } catch (error) {
+    if (error instanceof Error) console.log(error.name);
+
+    return (
+      <main className="mx-8 flex justify-center sm:grid-cols-3 gap-4">
+        Нам очень жаль, но запрос к серверу... Не увенчался успехом
+      </main>
+    );
+  }
 }
 
 function Post({ data }: { data: PostType }) {

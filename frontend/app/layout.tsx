@@ -9,7 +9,10 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Официальный сайт FarySD",
+  title: {
+    template: "%s • FarySD",
+    default: "Официальный сайт FarySD",
+  },
   description:
     "FarySD — место, где творчество раскрывается по-новому. Помни, что лучше — вместе!",
   creator: "Valentin (lanvalird) Bird",
@@ -33,12 +36,13 @@ export const metadata: Metadata = {
     "Valentin Bird",
     "Сервер Minecraft",
     "Сервер Майнкрафт",
-  ],openGraph: {
+  ],
+  openGraph: {
     type: "website",
     title: "Официальный сайт FarySD",
-  description:
-    "FarySD — место, где творчество раскрывается по-новому. Помни, что лучше — вместе!",
-  }
+    description:
+      "FarySD — место, где творчество раскрывается по-новому. Помни, что лучше — вместе!",
+  },
 };
 
 export default function RootLayout({
@@ -48,8 +52,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} antialiased`}>
-        {children}</body>
+      <body className={`${roboto.variable} antialiased`}>{children}</body>
     </html>
   );
 }

@@ -1,11 +1,26 @@
-import { Suspense } from "react"
-import { getPostBySlug } from "./_api/get-post";
+import type { Metadata } from "next";
 
-export default async function PostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+import { Suspense } from "react";
+
+import { getPostBySlug } from "./_api/get-post";
+import { notFound } from "next/navigation";
+
+type Props = { params: Promise<{ slug: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+
+  const post = await getPostBySlug(slug);
+  if (!post) return {};
+
+  return {
+    title: `${post.title} • Блог FarySD`,
+    description: post.description || post.content,
+    authors: [{ name: post.author.jobName || `@${post.author.username}` }],
+  };
+}
+
+export default async function PostPage({ params }: Props) {
   const { slug } = await params;
 
   return (
@@ -18,7 +33,9 @@ export default async function PostPage({
 async function PostContent({ slug }: { slug: string }) {
   const data = await getPostBySlug(slug);
 
-  if (!data) return null;
+  if (!data) {
+    notFound();
+  }
 
   return (
     <main className="mx-auto my-0 max-w-4xl gap-2 flex flex-col justify-center items-center text-center p-4 m-1 mb-16 rounded-xl bg-[var(--background-card)] ring-1 ring-[var(--foreground)]">
