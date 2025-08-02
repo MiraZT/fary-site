@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 
 import { Suspense } from "react";
-
-import { getPostBySlug } from "./_api/get-post";
 import { notFound } from "next/navigation";
+
+// Parent API
+import { getPosts } from "../_api/get-posts";
+
+// This API
+import { getPostBySlug } from "./_api/get-post";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -18,6 +22,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: post.description || post.content,
     authors: [{ name: post.author.jobName || `@${post.author.username}` }],
   };
+}
+
+export async function generateStaticParams() {
+  const posts = await getPosts();
+
+  return posts.map(({ slug }) => ({
+    slug,
+  }));
 }
 
 export default async function PostPage({ params }: Props) {
