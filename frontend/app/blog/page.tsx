@@ -1,8 +1,16 @@
-import type { Metadata } from "next";
 import type { Post as PostType } from "@/types";
+import type { Metadata } from "next";
 
 import Link from "next/link";
 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle
+} from "@/shared/components/ui/card";
 import { getPosts } from "./_api/get-posts";
 
 export const metadata: Metadata = {
@@ -14,7 +22,7 @@ export default async function BlogPage() {
     const posts = await getPosts();
 
     return (
-      <main className="mx-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <main className="mx-8 flex flex-col gap-4">
         {posts.map((post) => (
           <Post key={post.id} data={post} />
         ))}
@@ -33,25 +41,20 @@ export default async function BlogPage() {
 
 function Post({ data }: { data: PostType }) {
   return (
-    <section
-      key={data.id}
-      className="flex flex-col justify-center items-center text-center p-4 m-1 mb-16 rounded-xl bg-[var(--background-card)] ring-1 ring-[var(--foreground)]"
-    >
-      <h1 className="text-lg font-semibold text-[var(--foreground)]">
-        {data.title}
-      </h1>
-      <span className="text-sm mb-4">
-        {data.author.jobName || `@${data.author.username}`}
-      </span>
-
-      <p className="grow-1">{data.description || data.content}</p>
-
-      <Link
-        className="flex w-full justify-center items-center text-center p-2 mt-6 bg-[var(--foreground)] text-[var(--background-card)] rounded-lg"
-        href={`/blog/${data.slug}`}
-      >
-        Читать 👀
-      </Link>
+    <section key={data.id}>
+      <Card>
+        <CardHeader>
+          <CardTitle>{data.title}</CardTitle>
+          <CardDescription>
+            Опубликовано {`«${data.author.jobName}»` || `@${data.author.username}`}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          {data.description}
+          </CardContent>
+        <CardFooter>
+          <Link href={`/blog/${data.slug}`} className='underline'>Продолжить чтение...</Link>
+        </CardFooter>
+      </Card>
     </section>
   );
 }

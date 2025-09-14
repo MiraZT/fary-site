@@ -1,18 +1,23 @@
 "use client";
 
+import { Button } from "@/shared/components/ui/button";
 import Image from "next/image";
 
 const links = [
   {
-    name: "cайт автора",
+    name: "вики",
+    href: "https://wiki.fary.lanvalird.ru",
+  },
+  {
+    name: "автор",
     href: "https://lanvalird.ru",
   },
   {
-    name: "telegram проекта",
+    name: "telegram канал",
     href: "https://t.me/farysd_minecraft",
   },
   {
-    name: "vk проекта",
+    name: "сообщество vk",
     href: "https://vk.com/farysd",
   },
 ];
@@ -37,14 +42,16 @@ export default function Home() {
           priority
         />
         <div
-          className="max-w-[450px] px-4 py-2 rounded-lg text-center"
+          className="max-w-[450px] px-4 py-2 rounded-md text-center"
           style={{
             backgroundColor: "rgba(255 255 250 / 0.10)",
             color: "#fffcfb",
             fontWeight: 200,
           }}
         >
-          Люби, живи, дивись!
+          <code>
+            mc.fary.lanvalird.ru<span className="opacity-60">:20709</span>
+          </code>
         </div>
       </main>
 
@@ -55,14 +62,11 @@ export default function Home() {
         }}
       >
         {links.map(({ name, href }, index) => (
-          <a
-            className="opacity-40 hover:opacity-100 p-2 sm:p-4"
-            href={href}
-            key={index}
-            target="_blank"
-          >
-            {name}
-          </a>
+          <Button key={index} variant={"link"} asChild>
+            <a href={href} target="_blank">
+              {name}
+            </a>
+          </Button>
         ))}
       </footer>
     </div>
