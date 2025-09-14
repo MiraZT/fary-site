@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 export default function BlogLayout({
   children,
@@ -7,7 +8,7 @@ export default function BlogLayout({
   return (
     <>
       <header className="flex flex-row flex-nowrap justify-center items-center text-center p-4 m-1 mb-12 rounded-xl bg-[var(--background-card)] ring-1 ring-[var(--foreground)]">
-        Фейри 🧡
+        <Link href="/blog">Фейри 🧡</Link>
       </header>
       {children}
     </>

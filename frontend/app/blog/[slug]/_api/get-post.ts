@@ -14,5 +14,5 @@ export const getPostBySlug = cache(
     const posts = await data.json();
 
     return posts ? posts[0] : null;
-  }
+  },
 );

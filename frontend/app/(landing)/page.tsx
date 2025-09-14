@@ -44,9 +44,7 @@ export default function Home() {
             fontWeight: 200,
           }}
         >
-          <span className="inline-flex flex-nowrap">Мир алых грёз,</span>{" "}
-          <span className="inline-flex flex-nowrap">белых надежд</span>{" "}
-          <span className="inline-flex flex-nowrap">и ярких мечт</span>
+          Люби, живи, дивись!
         </div>
       </main>
 

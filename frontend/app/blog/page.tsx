@@ -44,7 +44,7 @@ function Post({ data }: { data: PostType }) {
         {data.author.jobName || `@${data.author.username}`}
       </span>
 
-      <p>{data.description || data.content}</p>
+      <p className="grow-1">{data.description || data.content}</p>
 
       <Link
         className="flex w-full justify-center items-center text-center p-2 mt-6 bg-[var(--foreground)] text-[var(--background-card)] rounded-lg"
