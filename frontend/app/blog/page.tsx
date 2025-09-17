@@ -22,7 +22,7 @@ export default async function BlogPage() {
     const posts = await getPosts();
 
     return (
-      <main className="mx-8 flex flex-col gap-4">
+      <main className="max-w-4xl my-0 mx-auto px-8 flex flex-col gap-4">
         {posts.map((post) => (
           <Post key={post.id} data={post} />
         ))}
