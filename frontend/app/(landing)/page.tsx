@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/shared/components/ui/button";
 import Image from "next/image";
 
@@ -28,7 +26,10 @@ export default function Home() {
       <Image
         className="relative z-[-1] object-center object-cover"
         src="/background.jpg"
-        alt="FarySD logo"
+        alt={
+          "Сделанный игроком скриншот игры с местного строения «Бункер»."
+          + "На картинке длинный каменный коридор освещённый факелами и фонарями сверху."
+        }
         fill
       />
 
@@ -36,8 +37,10 @@ export default function Home() {
         <Image
           className="border-none rounded-lg aspect-square h-32 w-32"
           src="/logo.png"
-          alt="FarySD logo"
-          width={156}
+          alt={
+            "Минималистичный логотип проекта в оранжевых оттенках."
+            + "SD-карта с буквой «F» по середине, обведённая в бежевый контур."
+          }width={156}
           height={156}
           priority
         />
@@ -49,8 +52,8 @@ export default function Home() {
             fontWeight: 200,
           }}
         >
-          <code>
-            mc.fary.lanvalird.ru<span className="opacity-60">:20709</span>
+          <code aria-label="IP нашего сервера:">
+            mc.fary.lanvalird.ru<span className="opacity-60" aria-label="И порт подключения:">:20709</span>
           </code>
         </div>
       </main>
