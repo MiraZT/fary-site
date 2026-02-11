@@ -45,6 +45,13 @@ export default function Home() {
           height={156}
           priority
         />
+
+        <Button variant={"link"} className="absolute top-4 right-4 opacity-60" asChild>
+            <a href={'/legal'} target="_blank">
+              Перейти к документам
+            </a>
+          </Button>
+        
         <div
           className="max-w-[450px] px-4 py-2 rounded-md text-center"
           style={{
