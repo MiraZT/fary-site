@@ -3,20 +3,20 @@ import { Button } from "@/shared/components/ui/button";
 const links = [
   {
     name: "Основные правила",
-    href: "terms",
+    href: "/legal/terms",
   },
   {
     name: "Правила сообщества",
-    href: "community",
+    href: "/legal/community",
   },
   {
     name: "Правила игры",
-    href: "game",
+    href: "/legal/game",
   },
   
   {
     name: "Чёрный словарь",
-    href: "black-dictionary",
+    href: "/legal/black-dictionary",
   },
 ];
 
@@ -30,7 +30,7 @@ export default function RootLayout({
       <nav className="flex gap-3 flex-wrap items-start justify-center text-center">
         {links.map(({ name, href }, index) => (
           <Button key={index} variant={"link"} asChild>
-            <a href={href} target="_blank">
+            <a href={href}>
               {name}
             </a>
           </Button>
