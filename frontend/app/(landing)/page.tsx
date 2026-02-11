@@ -46,7 +46,7 @@ export default function Home() {
           priority
         />
 
-        <Button variant={"link"} className="absolute top-4 right-4 opacity-60" asChild>
+        <Button variant={"link"} className="absolute top-4 right-4 opacity-80" asChild>
             <a href={'/legal'} target="_blank">
               Перейти к документам
             </a>
